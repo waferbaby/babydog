@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --host=0.0.0.0 --no-clear npx degit sveltejs/template my-svelte-project"
+    "start": "sirv public --host=0.0.0.0 --no-clear npx degit sveltejs/template babydog"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
