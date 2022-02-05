@@ -7,5 +7,11 @@ body {
 
 main {
   margin: auto;
-  max-width: 800px;
+  width: 300px;
+}
+
+@media all and (max-width: 625px) {
+  body {
+    font-size: 1em;
+  }
 }
