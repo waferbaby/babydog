@@ -7,20 +7,24 @@
   let strike_name = ''
   let strike_details = ''
 
+  function generateStrike() {
+    generateStrikeName()
+    generateStrikeDetails()
+  }
+
   function generateStrikeName() {
-    strike_name = capitalise(getRandomEntry(nouns['nouns'])) + capitalise(getRandomEntry(verbs['verbs'])['present'])
+    strike_name = capitalise(getRandomEntry(nouns['nouns'])) + ' ' + capitalise(getRandomEntry(verbs['verbs'])['present'])
   }
 
   function generateStrikeDetails() {
     strike_details = "..."
   }
 
-  generateStrikeName()
-  generateStrikeDetails()
-
+  generateStrike();
 </script>
 
-<section>
-  <h1 on:click={generateStrikeName}>Operation... {strike_name}?</h1>
-  <p on:click={generateStrikeDetails}>{strike_details}</p>
-</section>
+  <h1>Operation...</h1>
+  <strong>{strike_name}?</strong>
+  <p>{strike_details}</p>
+
+  <button on:click={generateStrike}>Reboot Strike Generator</button>
