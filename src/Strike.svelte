@@ -1,12 +1,14 @@
 <script>
-  import words from './data/words.js'
+  import nouns from '../corpora/data/words/nouns.json'
+  import verbs from '../corpora/data/words/verbs.json'
+
   import { capitalise, getRandomEntry } from './utils.js'
 
   let strike_name = ''
   let strike_details = ''
 
   function generateStrikeName() {
-    strike_name = capitalise(getRandomEntry(words)) + capitalise(getRandomEntry(words))
+    strike_name = capitalise(getRandomEntry(nouns['nouns'])) + capitalise(getRandomEntry(verbs['verbs'])['present'])
   }
 
   function generateStrikeDetails() {

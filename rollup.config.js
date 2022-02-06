@@ -1,6 +1,7 @@
 import svelte from 'rollup-plugin-svelte'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
+import json from '@rollup/plugin-json'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 
@@ -45,8 +46,8 @@ export default {
       browser: true,
       dedupe: ['svelte']
     }),
+    json(),
     commonjs(),
-
     !production && serve(),
     !production && livereload('public'),
     production && terser()

@@ -23,6 +23,8 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "corpora-project": "^0.2.0",
     "fs": "^0.0.1-security",
     "sirv-cli": "^2.0.0"
   }
