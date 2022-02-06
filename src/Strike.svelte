@@ -1,30 +1,28 @@
 <script>
-  import nouns from '../corpora/data/words/nouns.json'
-  import verbs from '../corpora/data/words/verbs.json'
+import nouns from '../corpora/data/words/nouns.json'
+import verbs from '../corpora/data/words/verbs.json'
 
-  import { capitalise, getRandomEntry } from './utils.js'
+import tracery from 'tracery-grammar'
+import grammar from './grammar.json'
 
-  let strike_name = ''
-  let strike_details = ''
+grammar['noun'] = nouns.nouns
+grammar['verb'] = verbs.verbs.map((v) => v.present)
 
-  function generateStrike() {
-    generateStrikeName()
-    generateStrikeDetails()
-  }
+let generator = tracery.createGrammar(grammar)
+let strike_name = ''
+let strike_details = ''
 
-  function generateStrikeName() {
-    strike_name = capitalise(getRandomEntry(nouns['nouns'])) + ' ' + capitalise(getRandomEntry(verbs['verbs'])['present'])
-  }
+generator.addModifiers(tracery.baseEngModifiers);
 
-  function generateStrikeDetails() {
-    strike_details = "..."
-  }
+function generateStrike() {
+  strike_name = generator.flatten('#strike_name#')
+}
 
-  generateStrike();
+generateStrike();
 </script>
 
+<section on:click={generateStrike}>
   <h1>Operation...</h1>
   <strong>{strike_name}?</strong>
   <p>{strike_details}</p>
-
-  <button on:click={generateStrike}>Reboot Strike Generator</button>
+</section>

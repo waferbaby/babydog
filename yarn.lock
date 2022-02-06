@@ -1599,6 +1599,11 @@ totalist@^3.0.0:
   resolved "https://registry.yarnpkg.com/totalist/-/totalist-3.0.0.tgz#4ef9c58c5f095255cdc3ff2a0a55091c57a3a1bd"
   integrity sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==
 
+tracery-grammar@^2.7.4:
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/tracery-grammar/-/tracery-grammar-2.7.4.tgz#241780cd205d846a88729f7fbffa6777ac13e8cd"
+  integrity sha512-oFSEconWOSh73kYSkqU137OYa/7+UCohel6wEFHgNh2ito9lDmitz5xr9IU0OIrxjo7UPSdFMzgKAp1c/lsi6A==
+
 tsconfig-paths@^3.12.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.12.0.tgz#19769aca6ee8f6a1a341e38c8fa45dd9fb18899b"

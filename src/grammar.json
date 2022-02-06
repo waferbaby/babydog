@@ -1,0 +1,16 @@
+{
+  "strike_name": [
+    "#noun.capitalize##verb.capitalize#",
+    "#verb.capitalize##noun.capitalize#",
+    "#noun.capitalize##noun.capitalize#"
+  ],
+  "name": [
+    "Banshee-44",
+    "Drifter",
+    "Ghaul",
+    "Ikora",
+    "Starhorse",
+    "Xûr",
+    "Zavala"
+  ]
+}
