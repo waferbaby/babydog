@@ -6,7 +6,8 @@ import tracery from 'tracery-grammar'
 import grammar from './grammar.json'
 
 grammar['noun'] = nouns.nouns
-grammar['verb'] = verbs.verbs.map((v) => v.present)
+grammar['present_verb'] = verbs.verbs.map((v) => v.present)
+grammar['past_verb'] = verbs.verbs.map((v) => v.past)
 
 let generator = tracery.createGrammar(grammar)
 let strike_name = ''
@@ -21,8 +22,8 @@ function generateStrike() {
 generateStrike();
 </script>
 
-<section on:click={generateStrike}>
+<div on:click={generateStrike}>
   <h1>Operation...</h1>
   <strong>{strike_name}?</strong>
   <p>{strike_details}</p>
-</section>
+</div>

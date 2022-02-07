@@ -1,15 +1,24 @@
 {
   "strike_name": [
-    "#noun.capitalize##verb.capitalize#",
-    "#verb.capitalize##noun.capitalize#",
-    "#noun.capitalize##noun.capitalize#"
+    "#noun.capitalize# #past_verb.capitalize#",
+    "#past_verb.capitalize# #noun.capitalize#",
+    "#noun.capitalize# #noun.capitalize#",
+    "#name# #present_verb.capitalize#",
+    "#past_verb.capitalize# #name#"
   ],
   "name": [
     "Banshee-44",
     "Drifter",
     "Ghaul",
     "Ikora",
+    "Mara",
+    "Mithrax",
+    "Praedyth",
+    "Spider",
     "Starhorse",
+    "Taniks",
+    "Toland",
+    "Variks",
     "Xûr",
     "Zavala"
   ]
