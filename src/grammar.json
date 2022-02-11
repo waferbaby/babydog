@@ -1,19 +1,33 @@
 {
   "strike_name": [
-    "#noun.capitalize# #past_verb.capitalize#",
     "#past_verb.capitalize# #noun.capitalize#",
+    "#present_verb.capitalize# #noun.capitalize#", 
     "#noun.capitalize# #noun.capitalize#",
-    "#name# #present_verb.capitalize#",
-    "#past_verb.capitalize# #name#"
+    "#noun.capitalize# #race#",
+    "#animal.capitalizeAll# #noun.capitalize#",
+    "#name# #noun.capitalize#",
+    "#noun.capitalize# #instrument.capitalizeAll#"
   ],
   "name": [
+    "Ada-1",
+    "Amanda",
     "Banshee-44",
+    "Clovis",
+    "Crota",
     "Drifter",
+    "Eramis",
+    "Failsafe",
+    "Felwinter",
+    "Fikrul",
     "Ghaul",
     "Ikora",
     "Mara",
     "Mithrax",
+    "Orin",
+    "Oryx",
     "Praedyth",
+    "Rasputin",
+    "Riven",
     "Spider",
     "Starhorse",
     "Taniks",
@@ -21,5 +35,16 @@
     "Variks",
     "Xûr",
     "Zavala"
+  ],
+  "race": [
+    "Ahamkara",
+    "Awoken",
+    "Cabal",
+    "Exo",
+    "Fallen",
+    "Human",
+    "Hive",
+    "Scorn",
+    "Vex"
   ]
 }
