@@ -1,0 +1,24 @@
+development:
+  clients:
+    default:
+      database: babydog_development
+      hosts:
+        - localhost:27017
+      options:
+
+  options:
+    log_level: :info
+    raise_not_found_error: false
+
+  driver_options:
+
+test:
+  clients:
+    default:
+      database: babydog_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
