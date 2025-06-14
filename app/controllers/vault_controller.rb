@@ -1,0 +1,2 @@
+class VaultController < ApplicationController
+end
