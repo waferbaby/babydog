@@ -114,10 +114,6 @@ GEM
       http-2 (>= 1.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.1.0)
-      actionpack (>= 6.0.0)
-      activesupport (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.8.0)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -255,7 +251,7 @@ GEM
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
-    restiny (7.0.1)
+    restiny (7.0.2)
       httpx (~> 1.1)
     rexml (3.4.1)
     rspec-core (3.13.4)
@@ -319,8 +315,6 @@ GEM
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
-    stimulus-rails (1.3.4)
-      railties (>= 6.0.0)
     stringio (3.1.7)
     thor (1.3.2)
     thruster (0.1.13)
@@ -329,9 +323,6 @@ GEM
     thruster (0.1.13-x86_64-darwin)
     thruster (0.1.13-x86_64-linux)
     timeout (0.4.3)
-    turbo-rails (2.0.16)
-      actionpack (>= 7.1.0)
-      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
@@ -370,7 +361,6 @@ DEPENDENCIES
   brakeman
   capybara
   dotenv
-  importmap-rails
   kamal
   mongoid
   propshaft
@@ -380,9 +370,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails-omakase
   selenium-webdriver
-  stimulus-rails
   thruster
-  turbo-rails
   web-console
 
 BUNDLED WITH
