@@ -87,9 +87,6 @@ GEM
     connection_pool (2.5.3)
     crass (1.0.6)
     date (3.4.1)
-    debug (1.11.0)
-      irb (~> 1.10)
-      reline (>= 0.3.8)
     dotenv (3.1.8)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -184,7 +181,7 @@ GEM
     psych (5.2.6)
       date
       stringio
-    puma (6.6.0)
+    puma (6.6.1)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
@@ -330,7 +327,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
-  debug
   importmap-rails
   kamal
   pg (~> 1.1)
@@ -344,7 +340,6 @@ DEPENDENCIES
   stimulus-rails
   thruster
   turbo-rails
-  tzinfo-data
   web-console
 
 BUNDLED WITH
