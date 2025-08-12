@@ -16,7 +16,7 @@ module Babydog
     config.load_defaults 8.0
 
     config.autoload_lib(ignore: %w[assets tasks])
-    config.time_zone = "Melbourne/Australa"
+    config.time_zone = "Melbourne"
     config.generators.system_tests = nil
   end
 end
