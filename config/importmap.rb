@@ -1,5 +1,3 @@
 pin "application"
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
-pin "@hotwired/stimulus", to: "stimulus.min.js"
-pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
-pin_all_from "app/javascript/controllers", under: "controllers"
+pin "htmx.org", integrity: "sha384-Sex7hJqyEl73iGzzGpWfuUs+4XKwOCGFsR/G7COoQ0xYdWfIXLpR0jtGKqJKPnw3" # @2.0.6
