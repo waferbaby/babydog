@@ -8,6 +8,7 @@ gem "kamal", require: false
 gem "pg", "~> 1.1"
 gem "propshaft"
 gem "puma", ">= 5.0"
+gem "restiny"
 gem "solid_cable"
 gem "solid_cache"
 gem "solid_queue"
