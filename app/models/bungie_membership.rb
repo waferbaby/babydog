@@ -1,0 +1,2 @@
+class BungieMembership < ApplicationRecord
+end
