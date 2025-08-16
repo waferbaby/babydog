@@ -3,7 +3,7 @@
   <li><a href="/vault">Vault</a></li>
   <% if logged_in? %>
     <li>
-      <%= current_membership %>
+      Logged in as <strong><%= current_membership.username %></strong>
       <a href="/logout/">Logout</a>
     </li>
   <% end %>
