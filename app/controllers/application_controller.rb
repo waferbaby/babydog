@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login
-    # unless params[:state] == session[:bungie_state]
-    if true
+    unless params[:state] == session[:bungie_state]
       flash.alert = "Please try logging in again"
       redirect_to :root and return
     end
