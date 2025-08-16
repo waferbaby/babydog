@@ -1,0 +1,10 @@
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/vault">Vault</a></li>
+  <% if logged_in? %>
+    <li>
+      <%= current_membership %>
+      <a href="/logout/">Logout</a>
+    </li>
+  <% end %>
+</ul>
