@@ -1,6 +1,6 @@
 module ApplicationHelper
   def current_membership
-    @current_membership ||= BungieMembership.find_by(membership_id: session[:bungie_membership_id])
+    @current_membership ||= Destiny::Membership.find_by(membership_id: session[:bungie_membership_id])
   end
 
   def logged_in?
