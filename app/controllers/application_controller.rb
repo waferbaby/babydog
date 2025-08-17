@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
     unless session[:bungie_membership_id].present?
       session[:redirect_to] = request.original_fullpath
       session[:bungie_state] = SecureRandom.hex(10)
-      redirect_to(Restiny.get_authorise_url(redirect_url: url_for(:login), state: session[:bungie_state]), allow_other_host: true)
+
+      redirect_to(
+        Restiny.get_authorise_url(redirect_url: url_for(:login), state: session[:bungie_state]),
+        allow_other_host: true
+      )
     end
   end
 
