@@ -1,2 +1,4 @@
-class Destiny::Membership < ApplicationRecord
+module Destiny
+  class Membership < ApplicationRecord
+  end
 end

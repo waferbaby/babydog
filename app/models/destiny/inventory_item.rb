@@ -1,2 +1,4 @@
-class Destiny::InventoryItem < ApplicationRecord
+module Destiny
+  class InventoryItem < ManifestEntry
+  end
 end
