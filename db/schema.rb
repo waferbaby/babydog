@@ -10,14 +10,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_14_080355) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_16_223050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "bungie_memberships", force: :cascade do |t|
+  create_table "destiny_damage_types", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_energy_types", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_inventory_buckets", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_inventory_items", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.string "name"
+    t.string "description"
+    t.string "flavour_text"
+    t.integer "item_type"
+    t.integer "item_subtype"
+    t.integer "guardian_type"
+    t.integer "tier_type"
+    t.integer "breaker_type"
+    t.boolean "is_equippable"
+    t.boolean "is_featured"
+    t.boolean "is_holofoil"
+    t.boolean "is_adept"
+    t.boolean "is_redacted"
+    t.boolean "is_blacklisted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_item_categories", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.string "name"
+    t.string "description"
+    t.integer "item_type"
+    t.integer "item_sub_type"
+    t.integer "guardian_type"
+    t.boolean "is_plug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_memberships", force: :cascade do |t|
     t.bigint "membership_id"
     t.integer "membership_type"
     t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_socket_types", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_stats", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destiny_traits", force: :cascade do |t|
+    t.bigint "bungie_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
