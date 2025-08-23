@@ -2,16 +2,41 @@ module Destiny
   class ManifestEntry < ApplicationRecord
     self.abstract_class = true
 
-    def self.import(payload)
-      payload.deep_symbolize_keys!
+    def self.import_manifest(manifest)
+      manifest.deep_symbolize_keys!
+
+      associations = {}
+
+      manifest.values.each do |payload|
+        associations.merge(payload_to_associations(payload))
+        self.import_entry(payload)
+      end
+    end
+
+    def self.import_entry(payload)
+      path = File.join("/tmp/#{self.to_s.downcase}")
+      Dir.mkdir(path) unless Dir.exist?(path)
+      File.write(File.join(path, "#{payload[:hash]}.json"), payload)
 
       item = self.find_or_create_by!(bungie_hash: payload[:hash])
-      item.update!(self.payload_to_update_params(payload))
+
+      updates = self.payload_to_attributes(payload).to_h do |key, fields|
+        [key, payload.dig(*fields)]
+      end
+
+      item.update!(updates)
     end
 
     private
 
-    def self.payload_to_update_params(payload)
+    def self.payload_to_attributes(payload)
+      {
+        name: [:displayProperties, :name],
+        description: [:displayProperties, :description]
+      }
+    end
+
+    def self.payload_to_associations(payload)
       {}
     end
   end
