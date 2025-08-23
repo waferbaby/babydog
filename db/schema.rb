@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_16_223050) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -32,8 +32,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_223050) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "destiny_inventory_item_stats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "destiny_inventory_items", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
     t.string "name"
     t.string "description"
     t.string "flavour_text"
@@ -54,12 +60,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_223050) do
 
   create_table "destiny_item_categories", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
     t.string "name"
     t.string "description"
     t.integer "item_type"
     t.integer "item_sub_type"
     t.integer "guardian_type"
+    t.integer "breaker_type"
     t.boolean "is_plug"
+    t.boolean "is_deprecated"
+    t.boolean "is_visible"
+    t.boolean "is_redacted"
+    t.boolean "is_blacklisted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,12 +92,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_223050) do
 
   create_table "destiny_stats", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.string "icon_url"
+    t.integer "aggregation_type"
+    t.integer "category"
+    t.boolean "has_icon"
+    t.boolean "is_redacted"
+    t.boolean "is_blacklisted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "destiny_traits", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.boolean "is_redacted"
+    t.boolean "is_blacklisted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
