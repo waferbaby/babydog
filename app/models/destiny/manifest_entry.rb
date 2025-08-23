@@ -31,8 +31,11 @@ module Destiny
 
     def self.payload_to_attributes(payload)
       {
+        index: :index,
         name: [:displayProperties, :name],
-        description: [:displayProperties, :description]
+        description: [:displayProperties, :description],
+        is_redacted: :redacted,
+        is_blacklisted: :blacklisted
       }
     end
 
