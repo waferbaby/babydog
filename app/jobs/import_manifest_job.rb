@@ -2,9 +2,10 @@ class ImportManifestJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-
-    sources = Rails.cache.fetch('babydog_manifests_now') do
+    sources = Rails.cache.fetch("babydog/manifests/#{Date.today}") do
       Restiny.download_manifest_json(definitions: [
+        Restiny::ManifestDefinition::STAT,
+        Restiny::ManifestDefinition::TRAIT,
         Restiny::ManifestDefinition::ITEM_CATEGORY,
         Restiny::ManifestDefinition::INVENTORY_ITEM
       ])
@@ -14,11 +15,7 @@ class ImportManifestJob < ApplicationJob
       object_type = "Destiny::#{manifest.gsub(/Destiny|Definition/, '')}".constantize
 
       begin
-        data = JSON.parse(File.read(file_path))
-
-        data.values.each do |payload|
-          object_type.import(payload)
-        end
+        object_type.import_manifest(JSON.parse(File.read(file_path)))
       rescue JSON::ParserError => e
         Rails.logger.error("Failed to parse #{file_path}")
       end
