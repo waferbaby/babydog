@@ -5,19 +5,12 @@ module Destiny
     def self.import_manifest(manifest)
       manifest.deep_symbolize_keys!
 
-      associations = {}
-
       manifest.values.each do |payload|
-        associations.merge(payload_to_associations(payload))
         self.import_entry(payload)
       end
     end
 
     def self.import_entry(payload)
-      path = File.join("/tmp/#{self.to_s.downcase}")
-      Dir.mkdir(path) unless Dir.exist?(path)
-      File.write(File.join(path, "#{payload[:hash]}.json"), payload)
-
       item = self.find_or_create_by!(bungie_hash: payload[:hash])
 
       updates = self.payload_to_attributes(payload).to_h do |key, fields|
@@ -25,6 +18,8 @@ module Destiny
       end
 
       item.update!(updates)
+
+      self.link_associations(payload)
     end
 
     private
@@ -41,6 +36,9 @@ module Destiny
 
     def self.payload_to_associations(payload)
       {}
+    end
+
+    def self.link_associations(payload)
     end
   end
 end
