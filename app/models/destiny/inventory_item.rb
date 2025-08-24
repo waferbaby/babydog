@@ -3,8 +3,6 @@ module Destiny
     def self.payload_to_attributes(payload)
       super(payload).merge({
         flavour_text: :flavorText,
-        item_type: :itemType,
-        item_subtype: :itemSubtype,
         guardian_type: :classType,
         tier_type: :tierType,
         breaker_type: :breakerType,
