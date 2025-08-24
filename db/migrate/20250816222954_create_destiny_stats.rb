@@ -5,7 +5,6 @@ class CreateDestinyStats < ActiveRecord::Migration[8.0]
       t.bigint :index
       t.string :name
       t.string :description
-      t.string :icon_url
       t.integer :aggregation_type
       t.integer :category
       t.boolean :has_icon

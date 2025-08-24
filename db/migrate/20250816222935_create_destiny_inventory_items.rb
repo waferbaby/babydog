@@ -6,8 +6,6 @@ class CreateDestinyInventoryItems < ActiveRecord::Migration[8.0]
       t.string :name
       t.string :description
       t.string :flavour_text
-      t.integer :item_type
-      t.integer :item_subtype
       t.integer :guardian_type
       t.integer :tier_type
       t.integer :breaker_type
