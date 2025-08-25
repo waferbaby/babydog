@@ -1,10 +1,10 @@
+require_relative './destiny/migration'
+
 class CreateDestinyInventoryItems < ActiveRecord::Migration[8.0]
   def change
     create_table :destiny_inventory_items do |t|
-      t.bigint :bungie_hash
-      t.bigint :index
-      t.string :name
-      t.string :description
+      Destiny::Migration.add_common_fields(t)
+
       t.string :flavour_text
       t.integer :guardian_type
       t.integer :tier_type
@@ -13,9 +13,6 @@ class CreateDestinyInventoryItems < ActiveRecord::Migration[8.0]
       t.boolean :is_featured
       t.boolean :is_holofoil
       t.boolean :is_adept
-      t.boolean :is_redacted
-      t.boolean :is_blacklisted
-      t.timestamps
     end
   end
 end
