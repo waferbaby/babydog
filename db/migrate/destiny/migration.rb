@@ -5,9 +5,11 @@ module Destiny
       table.bigint :index
       table.string :name
       table.string :description
-      table.boolean :is_redacted
-      table.boolean :is_blacklisted
+      table.boolean :is_redacted, default: false
+      table.boolean :is_blacklisted, default: false
       table.timestamps
+
+      table.index :bungie_hash, unique: true
     end
   end
 end
