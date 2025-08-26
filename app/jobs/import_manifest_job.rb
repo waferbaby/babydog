@@ -2,11 +2,13 @@ class ImportManifestJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    sources = Rails.cache.fetch("babydog/manifests/#{Date.today}") do
+    sources = Rails.cache.fetch("babydog/manifests/#{Date.today.to_s}") do
       Restiny.download_manifest_json(definitions: [
         Restiny::ManifestDefinition::STAT,
         Restiny::ManifestDefinition::TRAIT,
         Restiny::ManifestDefinition::ITEM_CATEGORY,
+        Restiny::ManifestDefinition::PLUG_SET,
+        Restiny::ManifestDefinition::INVENTORY_BUCKET,
         Restiny::ManifestDefinition::INVENTORY_ITEM
       ])
     end
