@@ -5,19 +5,21 @@ module Destiny
     def self.import_manifest(manifest)
       manifest.deep_symbolize_keys!
 
+      Rails.logger.info("Importing #{self}...")
+
       manifest.values.each do |payload|
         self.import_entry(payload)
       end
+
+      Rails.logger.info("Done.")
     end
 
     def self.import_entry(payload)
-      item = self.find_or_create_by!(bungie_hash: payload[:hash])
-
       updates = self.payload_to_attributes(payload).to_h do |key, fields|
         [key, payload.dig(*fields)]
       end
 
-      item.update!(updates)
+      self.upsert(updates, unique_by: :bungie_hash)
 
       self.link_associations(payload)
     end
@@ -26,6 +28,7 @@ module Destiny
 
     def self.payload_to_attributes(payload)
       {
+        bungie_hash: :hash,
         index: :index,
         name: [:displayProperties, :name],
         description: [:displayProperties, :description],
