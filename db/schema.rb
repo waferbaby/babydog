@@ -10,31 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_26_101235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "destiny_damage_types", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_damage_types_on_bungie_hash", unique: true
   end
 
   create_table "destiny_energy_types", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_energy_types_on_bungie_hash", unique: true
   end
 
   create_table "destiny_inventory_buckets", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_inventory_buckets_on_bungie_hash", unique: true
   end
 
   create_table "destiny_inventory_item_stats", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_inventory_item_stats_on_bungie_hash", unique: true
+  end
+
+  create_table "destiny_inventory_item_traits", id: false, force: :cascade do |t|
+    t.bigint "inventory_item_hash"
+    t.bigint "trait_hash"
+    t.index ["inventory_item_hash", "trait_hash"], name: "idx_on_inventory_item_hash_trait_hash_bfbf5cfdae", unique: true
   end
 
   create_table "destiny_inventory_items", force: :cascade do |t|
@@ -42,9 +73,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
     t.bigint "index"
     t.string "name"
     t.string "description"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "flavour_text"
-    t.integer "item_type"
-    t.integer "item_subtype"
     t.integer "guardian_type"
     t.integer "tier_type"
     t.integer "breaker_type"
@@ -52,10 +85,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
     t.boolean "is_featured"
     t.boolean "is_holofoil"
     t.boolean "is_adept"
-    t.boolean "is_redacted"
-    t.boolean "is_blacklisted"
+    t.index ["bungie_hash"], name: "index_destiny_inventory_items_on_bungie_hash", unique: true
+  end
+
+  create_table "destiny_inventory_vault_items", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.bigint "instance_hash"
+    t.bigint "location"
+    t.bigint "membership_id"
+    t.bigint "inventory_bucket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_inventory_vault_items_on_bungie_hash", unique: true
+    t.index ["instance_hash"], name: "index_destiny_inventory_vault_items_on_instance_hash", unique: true
+    t.index ["inventory_bucket_id"], name: "index_destiny_inventory_vault_items_on_inventory_bucket_id"
+    t.index ["membership_id"], name: "index_destiny_inventory_vault_items_on_membership_id"
   end
 
   create_table "destiny_item_categories", force: :cascade do |t|
@@ -63,17 +107,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
     t.bigint "index"
     t.string "name"
     t.string "description"
-    t.integer "item_type"
-    t.integer "item_sub_type"
-    t.integer "guardian_type"
-    t.integer "breaker_type"
-    t.boolean "is_plug"
-    t.boolean "is_deprecated"
-    t.boolean "is_visible"
-    t.boolean "is_redacted"
-    t.boolean "is_blacklisted"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_plug", default: false
+    t.boolean "is_deprecated", default: false
+    t.boolean "is_visible", default: false
+    t.index ["bungie_hash"], name: "index_destiny_item_categories_on_bungie_hash", unique: true
   end
 
   create_table "destiny_memberships", force: :cascade do |t|
@@ -84,10 +125,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "destiny_socket_types", force: :cascade do |t|
+  create_table "destiny_plug_sets", force: :cascade do |t|
     t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_plug_sets_on_bungie_hash", unique: true
+  end
+
+  create_table "destiny_socket_types", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.bigint "index"
+    t.string "name"
+    t.string "description"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_socket_types_on_bungie_hash", unique: true
   end
 
   create_table "destiny_stats", force: :cascade do |t|
@@ -95,14 +154,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
     t.bigint "index"
     t.string "name"
     t.string "description"
-    t.string "icon_url"
-    t.integer "aggregation_type"
-    t.integer "category"
-    t.boolean "has_icon"
-    t.boolean "is_redacted"
-    t.boolean "is_blacklisted"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "aggregation_type"
+    t.integer "category"
+    t.index ["bungie_hash"], name: "index_destiny_stats_on_bungie_hash", unique: true
   end
 
   create_table "destiny_traits", force: :cascade do |t|
@@ -110,9 +168,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_22_091625) do
     t.bigint "index"
     t.string "name"
     t.string "description"
-    t.boolean "is_redacted"
-    t.boolean "is_blacklisted"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bungie_hash"], name: "index_destiny_traits_on_bungie_hash", unique: true
   end
 end
