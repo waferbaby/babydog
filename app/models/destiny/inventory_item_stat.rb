@@ -1,2 +1,4 @@
-class Destiny::InventoryItemStat < ApplicationRecord
+module Destiny
+  class InventoryItemStat < ApplicationRecord
+  end
 end
