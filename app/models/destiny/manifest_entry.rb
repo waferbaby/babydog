@@ -3,12 +3,10 @@ module Destiny
     self.abstract_class = true
 
     def self.import_manifest(manifest)
-      manifest.deep_symbolize_keys!
-
       Rails.logger.info("Importing #{self}...")
 
       manifest.values.each do |payload|
-        self.import_entry(payload)
+        self.import_entry(payload.deep_symbolize_keys)
       end
 
       Rails.logger.info("Done.")
