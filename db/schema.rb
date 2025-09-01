@@ -85,6 +85,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_26_101235) do
     t.boolean "is_featured"
     t.boolean "is_holofoil"
     t.boolean "is_adept"
+    t.bigint "inventory_bucket_hash"
     t.index ["bungie_hash"], name: "index_destiny_inventory_items_on_bungie_hash", unique: true
   end
 
