@@ -14,7 +14,7 @@ module Destiny
 
     def self.import_entry(payload)
       updates = self.payload_to_attributes(payload).to_h do |key, fields|
-        [key, payload.dig(*fields)]
+        [ key, payload.dig(*fields) ]
       end
 
       self.upsert(updates, unique_by: :bungie_hash)
@@ -28,8 +28,8 @@ module Destiny
       {
         bungie_hash: :hash,
         index: :index,
-        name: [:displayProperties, :name],
-        description: [:displayProperties, :description],
+        name: [ :displayProperties, :name ],
+        description: [ :displayProperties, :description ],
         is_redacted: :redacted,
         is_blacklisted: :blacklisted
       }

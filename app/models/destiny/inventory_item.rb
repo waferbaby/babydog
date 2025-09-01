@@ -2,7 +2,11 @@ module Destiny
   class InventoryItem < ManifestEntry
     has_many :inventory_item_traits, foreign_key: :inventory_item_hash, primary_key: :bungie_hash
     has_many :traits, through: :inventory_item_traits
-    belongs_to :inventory_bucket, foreign_key: :inventory_bucket_hash, primary_key: :bungie_hash
+
+    has_many :inventory_item_categories, foreign_key: :category_hash, primary_key: :bungie_hash
+    has_many :categories, class_name: :item_category, through: :inventory_item_categories
+
+    belongs_to :bucket, class_name: :inventory_bucket, foreign_key: :inventory_bucket_hash, primary_key: :bungie_hash
 
     def self.payload_to_attributes(payload)
       super(payload).merge({
@@ -14,7 +18,7 @@ module Destiny
         is_featured: :isFeaturedItem,
         is_holofoil: :isHolofoil,
         is_adept: :isAdept,
-        inventory_bucket_hash: [:inventory, :bucketTypeHash]
+        inventory_bucket_hash: [ :inventory, :bucketTypeHash ]
       })
     end
 
@@ -26,7 +30,18 @@ module Destiny
           Destiny::InventoryItemTrait.upsert({
              inventory_item_hash: payload[:hash],
              trait_hash: trait_hash
-          }, unique_by: [:inventory_item_hash, :trait_hash])
+          }, unique_by: [ :inventory_item_hash, :trait_hash ])
+        end
+      end
+
+      if payload.key?(:itemCategoryHashes)
+        Destiny::InventoryItemCategory.where(inventory_item_hash: payload[:hash]).delete_all
+
+        payload[:itemCategoryHashes].each do |category_hash|
+          Destiny::InventoryItemCategory.upsert({
+             inventory_item_hash: payload[:hash],
+             category_hash: category_hash
+          }, unique_by: [ :inventory_item_hash, :category_hash ])
         end
       end
     end

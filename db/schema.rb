@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_26_101235) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_100238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -48,6 +48,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_26_101235) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bungie_hash"], name: "index_destiny_inventory_buckets_on_bungie_hash", unique: true
+  end
+
+  create_table "destiny_inventory_item_categories", id: false, force: :cascade do |t|
+    t.bigint "inventory_item_hash"
+    t.bigint "category_hash"
+    t.index ["inventory_item_hash", "category_hash"], name: "idx_on_inventory_item_hash_category_hash_d1c65d9775", unique: true
   end
 
   create_table "destiny_inventory_item_stats", force: :cascade do |t|

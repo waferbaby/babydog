@@ -21,15 +21,15 @@ class ApplicationController < ActionController::Base
     end
 
     token_result = Restiny.request_access_token(params[:code])
-    member_result = Restiny.get_primary_user_membership(token_result['membership_id'])
+    member_result = Restiny.get_primary_user_membership(token_result["membership_id"])
 
-    membership = Destiny::Membership.find_or_initialize_by(membership_id: member_result['membershipId'])
+    membership = Destiny::Membership.find_or_initialize_by(membership_id: member_result["membershipId"])
     membership.update!(
-      membership_type: member_result['membershipType'],
-      username: member_result['bungieGlobalDisplayName']
+      membership_type: member_result["membershipType"],
+      username: member_result["bungieGlobalDisplayName"]
     )
 
-    session[:bungie_access_token] = token_result['access_token']
+    session[:bungie_access_token] = token_result["access_token"]
     session[:bungie_membership_id] = membership.id
 
     redirect_to session[:redirect_to] || :root
