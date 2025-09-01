@@ -13,6 +13,7 @@ class CreateDestinyInventoryItems < ActiveRecord::Migration[8.0]
       t.boolean :is_featured
       t.boolean :is_holofoil
       t.boolean :is_adept
+      t.bigint :inventory_bucket_hash
     end
   end
 end
