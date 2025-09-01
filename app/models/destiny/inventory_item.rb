@@ -23,10 +23,10 @@ module Destiny
         Destiny::InventoryItemTrait.where(inventory_item_hash: payload[:hash]).delete_all
 
         payload[:traitHashes].each do |trait_hash|
-          Destiny::InventoryItemTrait.create!({
-            inventory_item_hash: payload[:hash],
-            trait_hash: trait_hash
-          })
+          Destiny::InventoryItemTrait.upsert({
+             inventory_item_hash: payload[:hash],
+             trait_hash: trait_hash
+          }, unique_by: [:inventory_item_hash, :trait_hash])
         end
       end
     end
