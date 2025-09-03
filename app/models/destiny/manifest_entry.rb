@@ -6,20 +6,21 @@ module Destiny
       Rails.logger.info("Importing #{self}...")
 
       manifest.values.each do |payload|
-        self.import_entry(payload.deep_symbolize_keys)
+        payload.deep_symbolize_keys!
+
+        updates = self.payload_to_attributes(payload).to_h do |key, fields|
+          [ key, payload.dig(*fields) ]
+        end
+
+        self.import_entry(updates)
+        self.link_associations(payload)
       end
 
       Rails.logger.info("Done.")
     end
 
-    def self.import_entry(payload)
-      updates = self.payload_to_attributes(payload).to_h do |key, fields|
-        [ key, payload.dig(*fields) ]
-      end
-
-      self.upsert(updates, unique_by: :bungie_hash)
-
-      self.link_associations(payload)
+    def self.import_entry(updates)
+      self.upsert(updates, unique_by: self.unique_keys)
     end
 
     private
@@ -40,6 +41,10 @@ module Destiny
     end
 
     def self.link_associations(payload)
+    end
+
+    def self.unique_keys
+      :bungie_hash
     end
   end
 end
