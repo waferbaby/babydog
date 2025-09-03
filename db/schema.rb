@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_02_084734) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_03_065421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -138,6 +138,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_084734) do
     t.boolean "can_roll"
     t.float "weight"
     t.float "alternate_weight"
+    t.index ["plug_set_hash", "inventory_item_hash"], name: "idx_on_plug_set_hash_inventory_item_hash_af98481650", unique: true
   end
 
   create_table "destiny_plug_sets", force: :cascade do |t|
