@@ -16,6 +16,7 @@ gem "thruster", require: false
 
 group :development, :test do
   gem "brakeman", require: false
+  gem "rails-erd"
   gem "rubocop-rails-omakase", require: false
 end
 
