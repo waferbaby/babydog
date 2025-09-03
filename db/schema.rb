@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_100238) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_02_084734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -132,6 +132,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_100238) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "destiny_plug_set_items", force: :cascade do |t|
+    t.bigint "plug_set_hash"
+    t.bigint "inventory_item_hash"
+    t.boolean "can_roll"
+    t.float "weight"
+    t.float "alternate_weight"
+  end
+
   create_table "destiny_plug_sets", force: :cascade do |t|
     t.bigint "bungie_hash"
     t.bigint "index"
@@ -141,6 +149,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_100238) do
     t.boolean "is_blacklisted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_fake", default: false
     t.index ["bungie_hash"], name: "index_destiny_plug_sets_on_bungie_hash", unique: true
   end
 
