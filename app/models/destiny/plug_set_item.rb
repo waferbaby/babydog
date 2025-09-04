@@ -5,6 +5,15 @@ module Destiny
 
     private
 
+    def self.payload_to_attributes(payload)
+      {
+        inventory_item_hash: :plugItemHash,
+        can_roll: :currentlyCanRoll,
+        weight: :weight,
+        alternate_weight: :alternateWeight
+      }
+    end
+
     def self.unique_keys
       [ :plug_set_hash, :inventory_item_hash ]
     end
