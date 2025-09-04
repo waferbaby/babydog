@@ -2,25 +2,27 @@ module Destiny
   class ManifestEntry < ApplicationRecord
     self.abstract_class = true
 
-    def self.import_manifest(manifest)
+    def self.import_collection(manifest, updates: nil)
       Rails.logger.info("Importing #{self}...")
 
-      manifest.values.each do |payload|
+      manifest.each do |payload|
         payload.deep_symbolize_keys!
 
-        updates = self.payload_to_attributes(payload).to_h do |key, fields|
-          [ key, payload.dig(*fields) ]
-        end
-
-        self.import_entry(updates)
+        self.import_entry(payload, updates: updates)
         self.link_associations(payload)
       end
 
       Rails.logger.info("Done.")
     end
 
-    def self.import_entry(updates)
-      self.upsert(updates, unique_by: self.unique_keys)
+    def self.import_entry(payload, updates: nil)
+      fields = self.payload_to_attributes(payload).to_h do |key, mappings|
+        [ key, payload.dig(*mappings) ]
+      end
+
+      fields.merge!(updates) if updates.present?
+
+      self.upsert(fields, unique_by: self.unique_keys)
     end
 
     private
