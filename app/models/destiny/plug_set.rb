@@ -11,13 +11,7 @@ module Destiny
         Destiny::PlugSetItem.where(plug_set_hash: payload[:hash]).delete_all
 
         payload[:reusablePlugItems].each do |plug_item|
-          Destiny::PlugSetItem.import_entry(
-            plug_set_hash: payload[:hash],
-            inventory_item_hash: plug_item[:plugItemHash],
-            can_roll: plug_item[:currentlyCanRoll],
-            weight: plug_item[:weight],
-            alternate_weight: plug_item[:alternateWeight]
-          )
+          Destiny::PlugSetItem.import_entry(plug_item, updates: { plug_set_hash: payload[:hash] })
         end
       end
     end
