@@ -8,21 +8,25 @@ module Destiny
       manifest.each do |payload|
         payload.deep_symbolize_keys!
 
-        self.import_entry(payload, updates: updates)
+        self.import_from_payload(payload, updates: updates)
         self.link_associations(payload)
       end
 
       Rails.logger.info("Done.")
     end
 
-    def self.import_entry(payload, updates: nil)
+    def self.import_from_payload(payload, updates: nil)
       fields = self.payload_to_attributes(payload).to_h do |key, mappings|
         [ key, payload.dig(*mappings) ]
       end
 
       fields.merge!(updates) if updates.present?
 
-      self.upsert(fields, unique_by: self.unique_keys)
+      self.upsert(fields)
+    end
+
+    def self.upsert(update)
+      super(update, unique_by: self.unique_keys)
     end
 
     private
