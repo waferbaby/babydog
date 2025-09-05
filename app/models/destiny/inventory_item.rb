@@ -27,7 +27,7 @@ module Destiny
         Destiny::InventoryItemTrait.where(inventory_item_hash: payload[:hash]).delete_all
 
         payload[:traitHashes].each do |trait_hash|
-          Destiny::InventoryItemTrait.import_entry(inventory_item_hash: payload[:hash], trait_hash: trait_hash)
+          Destiny::InventoryItemTrait.upsert(inventory_item_hash: payload[:hash], trait_hash: trait_hash)
         end
       end
 
@@ -35,7 +35,7 @@ module Destiny
         Destiny::InventoryItemCategory.where(inventory_item_hash: payload[:hash]).delete_all
 
         payload[:itemCategoryHashes].each do |category_hash|
-          Destiny::InventoryItemCategory.import_entry(inventory_item_hash: payload[:hash], category_hash: category_hash)
+          Destiny::InventoryItemCategory.upsert(inventory_item_hash: payload[:hash], category_hash: category_hash)
         end
       end
     end
