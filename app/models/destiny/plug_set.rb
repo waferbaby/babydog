@@ -11,7 +11,7 @@ module Destiny
         Destiny::PlugSetItem.where(plug_set_hash: payload[:hash]).delete_all
 
         payload[:reusablePlugItems].each do |plug_item|
-          Destiny::PlugSetItem.import_entry(plug_item, updates: { plug_set_hash: payload[:hash] })
+          Destiny::PlugSetItem.import_from_payload(plug_item, updates: { plug_set_hash: payload[:hash] })
         end
       end
     end
