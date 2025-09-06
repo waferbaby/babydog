@@ -1,7 +1,7 @@
 module Destiny
   class InventoryItemCategory < ManifestEntry
     belongs_to :inventory_item, primary_key: :bungie_hash, foreign_key: :inventory_item_hash
-    belongs_to :category, primary_key: :bungie_hash, foreign_key: :category_hash
+    belongs_to :category, class_name: "ItemCategory", primary_key: :bungie_hash, foreign_key: :category_hash
 
     private
 
