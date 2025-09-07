@@ -1,6 +1,6 @@
 module Destiny
   class InventoryVaultItem < ManifestEntry
-    belongs_to :membership, primary_key: :membership_id
+    belongs_to :membership, primary_key: :membership_hash
     has_one :inventory_item, foreign_key: :bungie_hash, primary_key: :inventory_item_hash
 
     delegate :bungie_hash, :name, :description, to: :inventory_item
@@ -19,7 +19,7 @@ module Destiny
     end
 
     def self.unique_keys
-      [ :membership_id, :inventory_item_hash ]
+      [ :membership_hash, :inventory_item_hash ]
     end
   end
 end

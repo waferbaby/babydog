@@ -1,5 +1,9 @@
 module Destiny
-  class Membership < ApplicationRecord
-    has_many :vault_items, class_name: "InventoryVaultItem", primary_key: :membership_id
+  class Membership < ManifestEntry
+    has_many :vault_items, class_name: "InventoryVaultItem", primary_key: :membership_hash
+
+    def self.unique_keys
+      :membership_hash
+    end
   end
 end
