@@ -1,5 +1,20 @@
 module Destiny
   class Character < ManifestEntry
     belongs_to :membership, primary_key: :membership_hash
+
+    def self.payload_to_attributes(payload)
+      {
+        character_hash: :characterId,
+        membership_hash: :membershipId,
+        last_played_at: :dateLastPlayed,
+        race: :raceType,
+        gender: :genderType,
+        guardian_type: :classType
+      }
+    end
+
+    def self.unique_keys
+      [ :character_hash, :membership_hash ]
+    end
   end
 end
