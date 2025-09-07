@@ -23,17 +23,26 @@ class ApplicationController < ActionController::Base
     token_result = Restiny.request_access_token(params[:code])
     member_result = Restiny.get_primary_user_membership(token_result["membership_id"])
 
-    membership = Destiny::Membership.find_or_initialize_by(membership_id: member_result["membershipId"])
-    membership.update!(
+    response = Destiny::Membership.upsert(
+      membership_hash: member_result["membershipId"],
       membership_type: member_result["membershipType"],
       username: member_result["bungieGlobalDisplayName"]
     )
 
     session[:bungie_access_token] = token_result["access_token"]
-    session[:bungie_membership_id] = membership.id
+    session[:bungie_membership_id] = response.last["id"]
+
+    Thread.new do
+      result = profile_for_current_membership([
+        Restiny::ComponentType::CHARACTERS
+      ])
+
+      character_data = result.deep_symbolize_keys.dig(:characters, :data).values
+      Destiny::Character.import_collection(character_data)
+    end
 
     redirect_to session[:redirect_to] || :root
-  rescue Restiny::AuthenticationError => e
+  rescue StandardError => e
     Rails.logger.error("Failed to authenticate user: #{e}")
     flash.alert = "Login failed - please try again"
 
@@ -51,5 +60,15 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     session[:bungie_access_token].present? && current_membership.present?
+  end
+
+  private
+
+  def profile_for_current_membership(components)
+    Restiny.get_profile(
+      membership_id: current_membership.membership_hash,
+      membership_type: current_membership.membership_type,
+      components: components
+    )
   end
 end
