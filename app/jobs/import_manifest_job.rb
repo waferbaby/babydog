@@ -5,7 +5,6 @@ class ImportManifestJob < ApplicationJob
     sources = Rails.cache.fetch("babydog/manifests/#{Date.today}") do
       Restiny.download_manifest_json(definitions: [
         Restiny::ManifestDefinition::STAT,
-        Restiny::ManifestDefinition::STAT_GROUP,
         Restiny::ManifestDefinition::DAMAGE_TYPE,
         Restiny::ManifestDefinition::ENERGY_TYPE,
         Restiny::ManifestDefinition::TRAIT,
