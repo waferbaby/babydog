@@ -27,6 +27,9 @@ module Destiny
 
     def self.upsert(update)
       super(update, unique_by: self.unique_keys)
+    rescue StandardError => e
+      Rails.logger.error("Failed to upsert #{self} entry: #{e}")
+      false
     end
 
     private
