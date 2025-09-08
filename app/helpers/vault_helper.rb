@@ -1,2 +1,0 @@
-module VaultHelper
-end
