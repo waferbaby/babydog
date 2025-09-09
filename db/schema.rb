@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_07_041425) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-
+ActiveRecord::Schema[8.0].define(version: 2025_09_07_044126) do
   create_table "destiny_characters", force: :cascade do |t|
     t.bigint "character_hash"
     t.bigint "membership_hash"
@@ -113,7 +110,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_041425) do
     t.bigint "instance_hash"
     t.bigint "inventory_bucket_hash"
     t.bigint "location"
-    t.bigint "membership_hash"
+    t.integer "membership_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state", default: 0
@@ -188,11 +185,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_041425) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bungie_hash"], name: "index_destiny_socket_types_on_bungie_hash", unique: true
-  end
-
-  create_table "destiny_stat_groups", force: :cascade do |t|
-    t.bigint "bungie_hash"
-    t.index ["bungie_hash"], name: "index_destiny_stat_groups_on_bungie_hash", unique: true
   end
 
   create_table "destiny_stats", force: :cascade do |t|
