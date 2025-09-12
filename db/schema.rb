@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_09_07_044126) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "destiny_characters", force: :cascade do |t|
     t.bigint "character_hash"
     t.bigint "membership_hash"
@@ -110,7 +113,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_044126) do
     t.bigint "instance_hash"
     t.bigint "inventory_bucket_hash"
     t.bigint "location"
-    t.integer "membership_hash"
+    t.bigint "membership_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state", default: 0
