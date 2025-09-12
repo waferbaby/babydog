@@ -13,6 +13,7 @@ gem "solid_cable"
 gem "solid_cache"
 gem "solid_queue"
 gem "thruster", require: false
+gem "turbo-rails"
 
 group :development, :test do
   gem "brakeman", require: false
