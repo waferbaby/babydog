@@ -19,7 +19,16 @@
     <header>
       <h1>Babydog</h1>
       <nav>
-        <%= render 'navigation' %>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/rolls">Rolls</a></li>
+          <% if logged_in? %>
+            <li>
+              Logged in as <strong><%= current_membership.username %></strong>
+              <a href="/logout/">Logout</a>
+            </li>
+          <% end %>
+        </ul>
       </nav>
     </header>
     <%= yield %>
