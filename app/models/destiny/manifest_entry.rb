@@ -7,9 +7,7 @@ module Destiny
 
       manifest.each do |payload|
         payload.deep_symbolize_keys!
-
         self.import_from_payload(payload, updates: updates)
-        self.link_associations(payload)
       end
 
       Rails.logger.info("Done.")
@@ -21,8 +19,11 @@ module Destiny
       end
 
       fields.merge!(updates) if updates.present?
+      result = self.upsert(fields)
 
-      self.upsert(fields)
+      self.link_associations(payload)
+
+      result
     end
 
     def self.upsert(update)
