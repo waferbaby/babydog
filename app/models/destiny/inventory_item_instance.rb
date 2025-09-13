@@ -1,6 +1,6 @@
 module Destiny
   class InventoryItemInstance < ManifestEntry
-    belongs_to :membership, primary_key: :membership_hash
+    belongs_to :membership, foreign_key: :membership_hash, primary_key: :membership_hash
     has_one :inventory_item, foreign_key: :bungie_hash, primary_key: :inventory_item_hash
 
     delegate :bungie_hash, :name, :description, to: :inventory_item
