@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
-  helper_method :logged_in?, :current_membership
+  helper_method :logged_in?, :current_membership, :current_character
 
   def check_authentication
     return if logged_in?
@@ -32,14 +32,12 @@ class ApplicationController < ActionController::Base
     session[:bungie_access_token] = token_result["access_token"]
     session[:bungie_membership_id] = response.last["id"]
 
-    Thread.new do
-      result = profile_for_current_membership([
-        Restiny::ComponentType::CHARACTERS
-      ])
+    result = profile_for_current_membership([
+      Restiny::ComponentType::CHARACTERS
+    ])
 
-      character_data = result.deep_symbolize_keys.dig(:characters, :data).values
-      Destiny::Character.import_collection(character_data)
-    end
+    character_data = result.deep_symbolize_keys.dig(:characters, :data).values
+    Destiny::Character.import_collection(character_data)
 
     redirect_to session[:redirect_to] || :root
   rescue StandardError => e
@@ -56,6 +54,10 @@ class ApplicationController < ActionController::Base
 
   def current_membership
     @current_membership ||= Destiny::Membership.find_by(id: session[:bungie_membership_id])
+  end
+
+  def current_character
+    @current_character ||= current_membership.most_recent_character
   end
 
   def logged_in?
