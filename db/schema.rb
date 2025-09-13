@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_07_044126) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_13_092200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -69,6 +69,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_044126) do
     t.index ["inventory_item_hash", "category_hash"], name: "idx_on_inventory_item_hash_category_hash_d1c65d9775", unique: true
   end
 
+  create_table "destiny_inventory_item_instances", force: :cascade do |t|
+    t.bigint "inventory_item_hash"
+    t.bigint "instance_hash"
+    t.bigint "inventory_bucket_hash"
+    t.bigint "location"
+    t.bigint "membership_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "state", default: 0
+    t.integer "bind_status", default: 0
+    t.integer "transfer_status", default: 0
+    t.integer "quantity", default: 0
+    t.boolean "is_lockable", default: false
+    t.bigint "override_style_hash"
+    t.bigint "character_hash"
+    t.index ["instance_hash"], name: "index_destiny_inventory_item_instances_on_instance_hash", unique: true
+    t.index ["membership_hash", "inventory_item_hash"], name: "idx_on_membership_hash_inventory_item_hash_c6508764b1", unique: true
+    t.index ["membership_hash"], name: "index_destiny_inventory_item_instances_on_membership_hash"
+  end
+
   create_table "destiny_inventory_item_stats", force: :cascade do |t|
     t.bigint "bungie_hash"
     t.bigint "index"
@@ -106,25 +126,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_044126) do
     t.boolean "is_adept"
     t.bigint "inventory_bucket_hash"
     t.index ["bungie_hash"], name: "index_destiny_inventory_items_on_bungie_hash", unique: true
-  end
-
-  create_table "destiny_inventory_vault_items", force: :cascade do |t|
-    t.bigint "inventory_item_hash"
-    t.bigint "instance_hash"
-    t.bigint "inventory_bucket_hash"
-    t.bigint "location"
-    t.bigint "membership_hash"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "state", default: 0
-    t.integer "bind_status", default: 0
-    t.integer "transfer_status", default: 0
-    t.integer "quantity", default: 0
-    t.boolean "is_lockable", default: false
-    t.bigint "override_style_hash"
-    t.index ["instance_hash"], name: "index_destiny_inventory_vault_items_on_instance_hash", unique: true
-    t.index ["membership_hash", "inventory_item_hash"], name: "idx_on_membership_hash_inventory_item_hash_305ecc556a", unique: true
-    t.index ["membership_hash"], name: "index_destiny_inventory_vault_items_on_membership_hash"
   end
 
   create_table "destiny_item_categories", force: :cascade do |t|
