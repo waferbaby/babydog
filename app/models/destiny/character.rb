@@ -9,7 +9,8 @@ module Destiny
         last_played_at: :dateLastPlayed,
         race: :raceType,
         gender: :genderType,
-        guardian_type: :classType
+        guardian_type: :classType,
+        emblem_hash: :emblemHash
       }
     end
 
