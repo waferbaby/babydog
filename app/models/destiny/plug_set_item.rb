@@ -1,5 +1,5 @@
 module Destiny
-  class PlugSetItem < ManifestEntry
+  class PlugSetItem < Base
     belongs_to :plug_set, primary_key: :bungie_hash, foreign_key: :plug_set_hash
     belongs_to :inventory_item, primary_key: :bungie_hash, foreign_key: :inventory_item_hash
 

@@ -1,4 +1,4 @@
 module Destiny
-  class DamageType < ManifestEntry
+  class DamageType < Base
   end
 end

@@ -1,5 +1,5 @@
 module Destiny
-  class ItemCategory < ManifestEntry
+  class ItemCategory < Base
     has_many :inventory_item_categories, foreign_key: :category_hash, primary_key: :bungie_hash
     has_many :inventory_items, through: :inventory_item_categories
 

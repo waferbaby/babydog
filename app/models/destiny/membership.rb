@@ -1,5 +1,5 @@
 module Destiny
-  class Membership < ManifestEntry
+  class Membership < Base
     has_many :item_instances, class_name: "InventoryItemInstance", primary_key: :membership_hash, foreign_key: :membership_hash
     has_many :characters, primary_key: :membership_hash, foreign_key: :membership_hash
 

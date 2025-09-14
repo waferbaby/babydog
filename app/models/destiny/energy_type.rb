@@ -1,4 +1,4 @@
 module Destiny
-  class EnergyType < ManifestEntry
+  class EnergyType < Base
   end
 end

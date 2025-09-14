@@ -1,5 +1,5 @@
 module Destiny
-  class Character < ManifestEntry
+  class Character < Base
     belongs_to :membership, primary_key: :membership_hash, foreign_key: :membership_hash
 
     def self.payload_to_attributes(payload)

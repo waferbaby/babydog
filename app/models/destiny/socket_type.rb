@@ -1,4 +1,4 @@
 module Destiny
-  class SocketType < ManifestEntry
+  class SocketType < Base
   end
 end

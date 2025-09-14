@@ -1,5 +1,5 @@
 module Destiny
-  class PlugSet < ManifestEntry
+  class PlugSet < Base
     def self.payload_to_attributes(payload)
       super(payload).merge({
         is_fake: :isFakePlugSet

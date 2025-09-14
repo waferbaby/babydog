@@ -1,5 +1,5 @@
 module Destiny
-  class InventoryItem < ManifestEntry
+  class InventoryItem < Base
     has_many :inventory_item_traits, foreign_key: :inventory_item_hash, primary_key: :bungie_hash
     has_many :traits, through: :inventory_item_traits
 

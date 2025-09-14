@@ -1,5 +1,5 @@
 module Destiny
-  class Stat < ManifestEntry
+  class Stat < Base
     def self.payload_to_attributes(payload)
       super(payload).merge({
         aggregation_type: :aggregationType,
