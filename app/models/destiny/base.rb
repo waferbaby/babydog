@@ -1,5 +1,5 @@
 module Destiny
-  class ManifestEntry < ApplicationRecord
+  class Base < ApplicationRecord
     self.abstract_class = true
 
     def self.import_collection(manifest, updates: nil)
