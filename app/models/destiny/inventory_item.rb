@@ -18,7 +18,10 @@ module Destiny
         is_featured: :isFeaturedItem,
         is_holofoil: :isHolofoil,
         is_adept: :isAdept,
-        inventory_bucket_hash: [ :inventory, :bucketTypeHash ]
+        inventory_bucket_hash: [ :inventory, :bucketTypeHash ],
+        has_icon: [ :displayProperties, :hasIcon ],
+        icon_url: [ :displayProperties, :icon ],
+        high_res_icon_url: [ :displayProperties, :highResIcon ]
       })
     end
 
