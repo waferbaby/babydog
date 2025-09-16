@@ -9,7 +9,6 @@ module Destiny
           Restiny::ManifestDefinition::DAMAGE_TYPE,
           Restiny::ManifestDefinition::ENERGY_TYPE,
           Restiny::ManifestDefinition::TRAIT,
-          Restiny::ManifestDefinition::ICON,
           Restiny::ManifestDefinition::ITEM_CATEGORY,
           Restiny::ManifestDefinition::PLUG_SET,
           Restiny::ManifestDefinition::INVENTORY_BUCKET,
