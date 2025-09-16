@@ -127,7 +127,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_082937) do
     t.bigint "inventory_bucket_hash"
     t.boolean "has_icon", default: false
     t.string "icon_url"
-    t.string "high_res_icon"
+    t.string "high_res_icon_url"
     t.index ["bungie_hash"], name: "index_destiny_inventory_items_on_bungie_hash", unique: true
   end
 
