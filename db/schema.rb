@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_15_082937) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_17_073305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -175,6 +175,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_082937) do
     t.datetime "updated_at", null: false
     t.boolean "is_fake", default: false
     t.index ["bungie_hash"], name: "index_destiny_plug_sets_on_bungie_hash", unique: true
+  end
+
+  create_table "destiny_seasons", force: :cascade do |t|
+    t.bigint "bungie_hash"
+    t.bigint "index"
+    t.boolean "is_redacted", default: false
+    t.boolean "is_blacklisted", default: false
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "number"
+    t.boolean "has_icon", default: false
+    t.string "icon_url"
+    t.index ["bungie_hash"], name: "index_destiny_seasons_on_bungie_hash", unique: true
   end
 
   create_table "destiny_socket_categories", force: :cascade do |t|
