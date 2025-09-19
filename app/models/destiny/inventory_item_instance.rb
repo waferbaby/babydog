@@ -3,7 +3,7 @@ module Destiny
     belongs_to :membership, foreign_key: :membership_hash, primary_key: :membership_hash
     has_one :inventory_item, foreign_key: :bungie_hash, primary_key: :inventory_item_hash
 
-    delegate :bungie_hash, :name, :description, to: :inventory_item
+    delegate :bungie_hash, :name, :description, :icon_url, :has_icon?, to: :inventory_item
 
     def self.payload_to_attributes(payload)
       {
