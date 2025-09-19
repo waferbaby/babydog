@@ -18,6 +18,10 @@ module Destiny
       [ :character_hash, :membership_hash ]
     end
 
+    def race
+      Restiny::Race.all[self[:race]]
+    end
+
     def guardian_type
       Restiny::GuardianClass.all[self[:guardian_type]]
     end
