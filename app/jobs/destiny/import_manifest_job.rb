@@ -7,8 +7,6 @@ module Destiny
         Restiny.download_manifest_json(definitions: [
           Restiny::ManifestDefinition::STAT,
           Restiny::ManifestDefinition::SEASON,
-          Restiny::ManifestDefinition::DAMAGE_TYPE,
-          Restiny::ManifestDefinition::ENERGY_TYPE,
           Restiny::ManifestDefinition::TRAIT,
           Restiny::ManifestDefinition::ITEM_CATEGORY,
           Restiny::ManifestDefinition::PLUG_SET,
