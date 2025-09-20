@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_17_073305) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_20_091815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,30 +25,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_073305) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_hash", "membership_hash"], name: "index_destiny_characters_on_character_hash_and_membership_hash", unique: true
-  end
-
-  create_table "destiny_damage_types", force: :cascade do |t|
-    t.bigint "bungie_hash"
-    t.bigint "index"
-    t.boolean "is_redacted", default: false
-    t.boolean "is_blacklisted", default: false
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bungie_hash"], name: "index_destiny_damage_types_on_bungie_hash", unique: true
-  end
-
-  create_table "destiny_energy_types", force: :cascade do |t|
-    t.bigint "bungie_hash"
-    t.bigint "index"
-    t.boolean "is_redacted", default: false
-    t.boolean "is_blacklisted", default: false
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bungie_hash"], name: "index_destiny_energy_types_on_bungie_hash", unique: true
   end
 
   create_table "destiny_inventory_buckets", force: :cascade do |t|
@@ -70,7 +46,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_073305) do
   end
 
   create_table "destiny_inventory_item_instances", force: :cascade do |t|
-    t.bigint "inventory_item_hash"
+    t.bigint "bungie_hash"
     t.bigint "instance_hash"
     t.bigint "inventory_bucket_hash"
     t.bigint "location"
@@ -85,7 +61,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_073305) do
     t.bigint "override_style_hash"
     t.bigint "character_hash"
     t.index ["instance_hash"], name: "index_destiny_inventory_item_instances_on_instance_hash", unique: true
-    t.index ["membership_hash", "inventory_item_hash"], name: "idx_on_membership_hash_inventory_item_hash_c6508764b1", unique: true
+    t.index ["membership_hash", "bungie_hash"], name: "idx_on_membership_hash_bungie_hash_5b2cb8c164", unique: true
     t.index ["membership_hash"], name: "index_destiny_inventory_item_instances_on_membership_hash"
   end
 
