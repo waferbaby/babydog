@@ -2,7 +2,6 @@ module Destiny
   class InventoryItem < Base
     has_many :inventory_item_traits, foreign_key: :inventory_item_hash, primary_key: :bungie_hash
     has_many :traits, through: :inventory_item_traits
-
     has_many :inventory_item_categories, foreign_key: :inventory_item_hash, primary_key: :bungie_hash
     has_many :categories, class_name: "ItemCategory", through: :inventory_item_categories
 

@@ -2,7 +2,7 @@ module Destiny
   class InventoryItemInstance < Base
     belongs_to :membership, foreign_key: :membership_hash, primary_key: :membership_hash
     has_one :inventory_item, foreign_key: :bungie_hash, primary_key: :bungie_hash
-    has_many :inventory_item_categories, foreign_key: :bungie_hash, primary_key: :bungie_hash
+    has_many :inventory_item_categories, foreign_key: :inventory_item_hash, primary_key: :bungie_hash
     has_many :categories, class_name: "ItemCategory", through: :inventory_item_categories
 
     delegate :bungie_hash, :name, :description, :icon_url, :has_icon?, to: :inventory_item
