@@ -8,6 +8,10 @@ module Destiny
 
     belongs_to :bucket, class_name: "InventoryBucket", foreign_key: :inventory_bucket_hash, primary_key: :bungie_hash
 
+    ItemFilters.all.each do |filters|
+      filters.each { |key, name| scope key.to_s.pluralize.to_sym, -> { joins(:categories).merge(ItemCategory.send(key)) } }
+    end
+
     def self.payload_to_attributes(payload)
       super(payload).merge({
         flavour_text: :flavorText,
