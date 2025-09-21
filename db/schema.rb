@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_21_090935) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_21_094118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -61,7 +61,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_21_090935) do
     t.bigint "override_style_hash"
     t.bigint "character_hash"
     t.index ["instance_hash"], name: "index_destiny_inventory_item_instances_on_instance_hash", unique: true
-    t.index ["membership_hash", "bungie_hash"], name: "idx_on_membership_hash_bungie_hash_5b2cb8c164", unique: true
     t.index ["membership_hash"], name: "index_destiny_inventory_item_instances_on_membership_hash"
   end
 
