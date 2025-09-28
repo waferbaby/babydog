@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 8.0.2"
+gem "rails", "~> 8.0.3"
 
 gem "bootsnap", require: false
 gem "importmap-rails"
@@ -13,6 +13,7 @@ gem "solid_cable"
 gem "solid_cache"
 gem "solid_queue"
 gem "thruster", require: false
+gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
