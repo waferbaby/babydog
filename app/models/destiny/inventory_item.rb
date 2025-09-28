@@ -13,6 +13,7 @@ module Destiny
 
     def self.payload_to_attributes(payload)
       super(payload).merge({
+        display_name: :itemTypeDisplayName,
         flavour_text: :flavorText,
         guardian_type: :classType,
         tier_type: :tierType,
@@ -24,7 +25,8 @@ module Destiny
         inventory_bucket_hash: [ :inventory, :bucketTypeHash ],
         has_icon: [ :displayProperties, :hasIcon ],
         icon_url: [ :displayProperties, :icon ],
-        high_res_icon_url: [ :displayProperties, :highResIcon ]
+        high_res_icon_url: [ :displayProperties, :highResIcon ],
+        screenshot_url: :screenshot
       })
     end
 
