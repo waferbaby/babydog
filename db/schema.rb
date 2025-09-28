@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_21_094118) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_28_015051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -103,6 +103,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_21_094118) do
     t.boolean "has_icon", default: false
     t.string "icon_url"
     t.string "high_res_icon_url"
+    t.string "display_name"
+    t.string "screenshot_url"
     t.index ["bungie_hash"], name: "index_destiny_inventory_items_on_bungie_hash", unique: true
   end
 
